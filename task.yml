@@ -1,0 +1,34 @@
+---
+- name: start | stop | restart apache2
+  hosts: localhost
+  become: true
+  become_user: root
+  tasks:
+    - name: Starting apache server 
+      systemd:
+        name: httpd
+        enabled: yes
+        masked: no
+    - name: Status apache server
+      systemd:
+        name: httpd
+        state: started
+    - name: Stopping apache server 
+      systemd:
+        name: httpd
+        state: stopped
+    - name: Status apache server
+      systemd:
+        state: stopped
+        name: httpd
+    - name: Restarting apache server 
+      systemd:
+        name: httpd
+        enabled: yes
+        masked: no
+    - name: Status apache server
+      systemd:
+        state: started
+        name: httpd
+
+
